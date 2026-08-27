@@ -16,23 +16,33 @@ vibration imaging / predictive maintenance internship application.
 ## Screenshots
 
 <table>
-  <tr>
-    <td><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="400"/></td>
-    <td><img src="docs/screenshots/scan-result.png" alt="Scan Result" width="400"/></td>
-    <td><img src="docs/screenshots/scan-result2.png" alt="Scan Result magnified video" width="400"/></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Fleet Dashboard</b></td>
-    <td align="center"><b>Scan Result & Diagnosis</b></td>
-  </tr>
-  <tr>
-    <td><img src="docs/screenshots/machine-history.png" alt="Machine History" width="400"/></td>
-    <td><img src="docs/screenshots/pdf-report.png" alt="PDF Report" width="400"/></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Trend History</b></td>
-    <td align="center"><b>PDF Report</b></td>
-  </tr>
+<tr>
+<td><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="400"/></td>
+<td><img src="docs/screenshots/scan-result.png" alt="Scan Result" width="400"/></td>
+<td><img src="docs/screenshots/scan-result2.png" alt="Scan Result magnified video" width="400"/></td>
+</tr>
+<tr>
+<td align="center"><b>Fleet Dashboard</b></td>
+<td align="center"><b>Scan Result & Diagnosis</b></td>
+<td align="center"><b>Motion-Magnified Video</b></td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/machine-history.png" alt="Machine History" width="400"/></td>
+<td><img src="docs/screenshots/pdf-report.png" alt="PDF Report" width="400"/></td>
+</tr>
+<tr>
+<td align="center"><b>Trend History</b></td>
+<td align="center"><b>PDF Report</b></td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/admin-scans.png" alt="Admin Scans" width="400"/></td>
+<td><img src="docs/screenshots/admin-machines.png" alt="Admin Machines" width="400"/></td>
+<td><img src="docs/screenshots/admin-machine-fault-patterns.png" alt="Admin Machine-patterns" width="400"/></td>
+</tr>
+<tr>
+<td align="center"><b>Django Admin — Scans</b></td>
+<td align="center"><b>Django Admin — Machines</b></td>
+</tr>
 </table>
 
 ## What it does
