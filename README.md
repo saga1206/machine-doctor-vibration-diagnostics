@@ -19,6 +19,7 @@ vibration imaging / predictive maintenance internship application.
   <tr>
     <td><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="400"/></td>
     <td><img src="docs/screenshots/scan-result.png" alt="Scan Result" width="400"/></td>
+    <td><img src="docs/screenshots/scan-result2.png" alt="Scan Result magnified video" width="400"/></td>
   </tr>
   <tr>
     <td align="center"><b>Fleet Dashboard</b></td>
