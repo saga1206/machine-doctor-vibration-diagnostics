@@ -42,6 +42,7 @@ vibration imaging / predictive maintenance internship application.
 <tr>
 <td align="center"><b>Django Admin — Scans</b></td>
 <td align="center"><b>Django Admin — Machines</b></td>
+<td align="center"><b>Django Admin — Machine Patterns</b></td>
 </tr>
 </table>
 
