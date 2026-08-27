@@ -13,6 +13,27 @@ vibration imaging / predictive maintenance internship application.
 
 [![Watch the Demo](https://img.shields.io/badge/📺_Watch_the_Demo-YouTube-blue?style=for-the-badge)](PASTE_YOUR_YOUTUBE_LINK_HERE)
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="400"/></td>
+    <td><img src="docs/screenshots/scan-result.png" alt="Scan Result" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Fleet Dashboard</b></td>
+    <td align="center"><b>Scan Result & Diagnosis</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/machine-history.png" alt="Machine History" width="400"/></td>
+    <td><img src="docs/screenshots/pdf-report.png" alt="PDF Report" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Trend History</b></td>
+    <td align="center"><b>PDF Report</b></td>
+  </tr>
+</table>
+
 ## What it does
 
 1. **Upload or record** a 5-15 second video of a machine (file upload or live webcam)
