@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Healthy / Normal Operation",
+    "freq_min_hz": 0,
+    "freq_max_hz": 30,
+    "amplitude_level": "low",
+    "health_status": "healthy",
+    "description": "Vibration frequency and amplitude are within the normal range expected for smoothly running rotating equipment.",
+    "recommendation": "No action needed. Continue routine monitoring."
+  },
+  {
+    "name": "Imbalance (e.g. bent fan blade, uneven load)",
+    "freq_min_hz": 15,
+    "freq_max_hz": 40,
+    "amplitude_level": "high",
+    "health_status": "warning",
+    "description": "A single dominant low-frequency peak with large amplitude often indicates rotating imbalance, such as a bent blade, debris buildup, or uneven mass distribution.",
+    "recommendation": "Inspect for visible debris, bent blades, or loose attachments. Consider rebalancing."
+  },
+  {
+    "name": "Mechanical Looseness",
+    "freq_min_hz": 20,
+    "freq_max_hz": 60,
+    "amplitude_level": "medium",
+    "health_status": "watch",
+    "description": "Irregular, less predictable vibration in this range can point to loose mounting bolts, worn brackets, or a loose housing.",
+    "recommendation": "Check and tighten mounting hardware. Inspect brackets and housing for wear."
+  },
+  {
+    "name": "Bearing Wear (early stage)",
+    "freq_min_hz": 80,
+    "freq_max_hz": 200,
+    "amplitude_level": "low",
+    "health_status": "watch",
+    "description": "High-frequency vibration at relatively low amplitude is a classic early sign of bearing wear, before it becomes audible or severe.",
+    "recommendation": "Schedule a bearing inspection within the next few weeks. Monitor amplitude trend closely."
+  },
+  {
+    "name": "Bearing Wear (advanced)",
+    "freq_min_hz": 80,
+    "freq_max_hz": 200,
+    "amplitude_level": "high",
+    "health_status": "warning",
+    "description": "High-frequency vibration combined with high amplitude suggests significantly worn or damaged bearings.",
+    "recommendation": "Recommend near-term inspection and likely bearing replacement to avoid failure."
+  },
+  {
+    "name": "Motor Electrical Fault (e.g. winding issue)",
+    "freq_min_hz": 95,
+    "freq_max_hz": 105,
+    "amplitude_level": "medium",
+    "health_status": "warning",
+    "description": "A sharp peak very close to twice the electrical line frequency (around 100 Hz for 50Hz mains) can indicate an electrical fault such as winding or rotor bar issues, rather than a purely mechanical one.",
+    "recommendation": "Have an electrician check motor windings and power supply quality."
+  }
+]

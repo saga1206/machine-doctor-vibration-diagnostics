@@ -1,0 +1,52 @@
+{% extends "scanner/base.html" %}
+{% block title %}Dashboard — Machine Doctor{% endblock %}
+{% block content %}
+
+<div class="eyebrow">NON-CONTACT VIBRATION DIAGNOSTICS</div>
+<div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:28px;">
+    <h1 style="font-size:1.9rem;">Fleet Overview</h1>
+    <a href="{% url 'upload' %}" class="btn">+ NEW SCAN</a>
+</div>
+
+{% if machines %}
+    <div style="display:flex; flex-direction:column; gap:14px;">
+    {% for machine in machines %}
+        <div class="panel">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                <div>
+                    <a href="{% url 'machine_detail' machine.pk %}" style="color:var(--text-primary); text-decoration:none;">
+                        <h3 style="margin-bottom:2px;">{{ machine.name }}</h3>
+                    </a>
+                    {% if machine.machine_type %}<div class="eyebrow" style="text-transform:none; letter-spacing:0.02em;">{{ machine.machine_type }}</div>{% endif %}
+                </div>
+                <div class="mono" style="color:var(--text-muted); font-size:0.8rem;">{{ machine.scans.count }} scan{{ machine.scans.count|pluralize }}</div>
+            </div>
+
+            {% if machine.scans.all %}
+                <hr class="divider" style="margin:14px 0;">
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                {% for scan in machine.scans.all|slice:":4" %}
+                    <a href="{% url 'scan_result' scan.pk %}" style="display:flex; align-items:center; justify-content:space-between; text-decoration:none; color:var(--text-primary); font-size:0.9rem;">
+                        <span class="mono" style="color:var(--text-muted);">SCAN #{{ scan.pk }} &middot; {{ scan.created_at|date:"M d, H:i" }}</span>
+                        {% if scan.is_processed %}
+                            {% include "scanner/_health_badge.html" with health_status=scan.health_status %}
+                        {% else %}
+                            {% include "scanner/_health_badge.html" with health_status="" %}
+                        {% endif %}
+                    </a>
+                {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <div class="panel" style="text-align:center; padding:48px 24px; color:var(--text-muted);">
+        <svg width="48" height="28" viewBox="0 0 48 28" style="margin-bottom:14px;"><path d="M0 14 H10 L14 4 L20 24 L26 8 L30 18 L34 14 H48" stroke="#232d35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div style="font-family:var(--font-display); font-size:1.1rem; color:var(--text-primary); margin-bottom:6px;">No machines scanned yet</div>
+        <div style="margin-bottom:18px;">Record or upload a short video to run your first diagnostic.</div>
+        <a href="{% url 'upload' %}" class="btn">+ NEW SCAN</a>
+    </div>
+{% endif %}
+
+{% endblock %}

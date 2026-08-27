@@ -1,0 +1,61 @@
+{% extends "scanner/base.html" %}
+{% block title %}{{ machine.name }} — Machine Doctor{% endblock %}
+{% block extra_style %}
+<style>
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--panel-border); }
+    th { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; }
+    td { font-size: 0.9rem; }
+    td.mono-cell { font-family: var(--font-mono); color: var(--accent); }
+    .trend-box { padding: 16px 20px; border-radius: var(--radius); margin: 18px 0; border-left: 3px solid; background: var(--panel); font-size: 0.92rem; }
+    .trend-box.none    { border-color: var(--text-muted); }
+    .trend-box.watch   { border-color: var(--watch); color: var(--watch); }
+    .trend-box.urgent  { border-color: var(--warning); color: var(--warning); }
+    img.chart { width: 100%; border-radius: var(--radius); border: 1px solid var(--panel-border); margin: 14px 0; background:#fff; }
+</style>
+{% endblock %}
+{% block content %}
+
+<a href="{% url 'dashboard' %}" style="font-family:var(--font-mono); font-size:0.82rem;">&larr; DASHBOARD</a>
+
+<div class="eyebrow" style="margin-top:14px;">{% if machine.machine_type %}{{ machine.machine_type }}{% else %}MACHINE{% endif %}</div>
+<h1 style="font-size:1.7rem;">{{ machine.name }}</h1>
+
+<div class="trend-box {{ trend.warning_level }}">
+    <div class="eyebrow" style="margin-bottom:6px; color:inherit; opacity:0.8;">TREND</div>
+    {{ trend.message }}
+</div>
+
+{% if chart_data_uri %}
+    <img class="chart" src="{{ chart_data_uri }}" alt="Amplitude trend chart">
+{% endif %}
+
+<div class="eyebrow" style="margin:26px 0 4px;">SCAN HISTORY</div>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Frequency</th>
+        <th>Amplitude</th>
+        <th></th>
+    </tr>
+    {% for scan in scans %}
+    <tr>
+        <td class="mono-cell">{{ scan.created_at|date:"M d, H:i" }}</td>
+        <td>
+            {% if scan.is_processed %}
+                {% include "scanner/_health_badge.html" with health_status=scan.health_status %}
+            {% else %}
+                <span style="color:var(--text-muted); font-size:0.85rem;">error</span>
+            {% endif %}
+        </td>
+        <td class="mono-cell">{% if scan.dominant_frequency_hz %}{{ scan.dominant_frequency_hz }} Hz{% else %}&mdash;{% endif %}</td>
+        <td class="mono-cell">{% if scan.amplitude %}{{ scan.amplitude }}{% else %}&mdash;{% endif %}</td>
+        <td><a href="{% url 'scan_result' scan.pk %}">VIEW</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p style="margin-top:24px;"><a href="{% url 'upload' %}" class="btn">+ NEW SCAN OF THIS MACHINE</a></p>
+
+{% endblock %}

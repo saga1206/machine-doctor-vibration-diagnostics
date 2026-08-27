@@ -1,0 +1,21 @@
+{% if health_status == "healthy" %}
+<span class="health-badge healthy">
+    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M0 7 H28" stroke="#34d399" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    Healthy
+</span>
+{% elif health_status == "watch" %}
+<span class="health-badge watch">
+    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M0 7 Q4 2 8 7 T16 7 T24 7 T28 7" stroke="#f5b942" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    Watch
+</span>
+{% elif health_status == "warning" %}
+<span class="health-badge warning">
+    <svg width="28" height="14" viewBox="0 0 28 14"><path d="M0 7 L4 1 L8 13 L12 3 L16 11 L20 5 L24 9 L28 7" stroke="#f2626b" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Warning
+</span>
+{% else %}
+<span class="health-badge pending">
+    <svg width="28" height="14" viewBox="0 0 28 14"><circle cx="6" cy="7" r="1.6" fill="#8a97a1"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle><circle cx="14" cy="7" r="1.6" fill="#8a97a1"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.4s" repeatCount="indefinite"/></circle><circle cx="22" cy="7" r="1.6" fill="#8a97a1"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" begin="0.3s" repeatCount="indefinite"/></circle></svg>
+    Pending
+</span>
+{% endif %}

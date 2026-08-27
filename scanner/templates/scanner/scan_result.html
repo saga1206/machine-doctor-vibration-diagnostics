@@ -1,0 +1,81 @@
+{% extends "scanner/base.html" %}
+{% block title %}Scan #{{ scan.pk }} — Machine Doctor{% endblock %}
+{% block extra_style %}
+<style>
+    video { width: 100%; border-radius: 8px; background: #000; }
+    .stat-row { display: flex; gap: 14px; margin: 20px 0; }
+    .stat { background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 14px 18px; flex: 1; }
+    .stat .value { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; color: var(--accent); }
+    .diagnosis-box { background: var(--panel); border: 1px solid var(--panel-border); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: var(--radius); margin: 18px 0; }
+    .error-box { background: rgba(242,98,107,0.08); border-left: 3px solid var(--warning); padding: 14px 18px; border-radius: 8px; margin: 16px 0; color: var(--warning); font-size: 0.9rem; }
+    .warning-box { background: rgba(245,185,66,0.08); border-left: 3px solid var(--watch); padding: 12px 18px; border-radius: 8px; margin: 12px 0; font-size: 0.85rem; color: var(--watch); }
+    .video-pair { display: flex; gap: 14px; flex-wrap: wrap; }
+    .video-pair > div { flex: 1; min-width: 240px; }
+    .video-pair p.label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 6px; }
+    img.chart { width: 100%; border-radius: var(--radius); border: 1px solid var(--panel-border); background: #fff; }
+</style>
+{% endblock %}
+{% block content %}
+
+<a href="{% url 'dashboard' %}" style="font-family:var(--font-mono); font-size:0.82rem;">&larr; DASHBOARD</a>
+
+<div style="display:flex; align-items:baseline; justify-content:space-between; margin-top:14px;">
+    <div>
+        <div class="eyebrow">SCAN #{{ scan.pk }}</div>
+        <h1 style="font-size:1.7rem;">{{ scan.machine.name }}</h1>
+    </div>
+    {% if scan.is_processed %}
+        {% include "scanner/_health_badge.html" with health_status=scan.health_status %}
+    {% else %}
+        {% include "scanner/_health_badge.html" with health_status="" %}
+    {% endif %}
+</div>
+
+{% if scan.processing_error and not scan.is_processed %}
+    <div class="error-box"><strong>Analysis error:</strong> {{ scan.processing_error }}</div>
+{% elif scan.processing_error %}
+    <div class="warning-box"><strong>Note:</strong> {{ scan.processing_error }}</div>
+{% endif %}
+
+{% if scan.is_processed %}
+    <div class="stat-row">
+        <div class="stat">
+            <div class="eyebrow">DOMINANT FREQUENCY</div>
+            <div class="value">{{ scan.dominant_frequency_hz }} <span style="font-size:1rem; color:var(--text-muted);">Hz</span></div>
+        </div>
+        <div class="stat">
+            <div class="eyebrow">AMPLITUDE</div>
+            <div class="value">{{ scan.amplitude }}</div>
+        </div>
+    </div>
+
+    <div class="diagnosis-box">
+        <div class="eyebrow" style="margin-bottom:8px;">DIAGNOSIS</div>
+        {{ scan.diagnosis_text }}
+    </div>
+
+    {% if scan.chart_image %}
+        <div class="eyebrow" style="margin:22px 0 8px;">VIBRATION SPECTRUM</div>
+        <img class="chart" src="{{ scan.chart_image.url }}" alt="Frequency spectrum chart">
+    {% endif %}
+
+    {% if scan.report_pdf %}
+        <p style="margin-top:20px;"><a href="{{ scan.report_pdf.url }}" download class="btn">&#128196; DOWNLOAD FULL REPORT (PDF)</a></p>
+    {% endif %}
+{% endif %}
+
+<div class="eyebrow" style="margin:28px 0 8px;">VIDEO</div>
+<div class="video-pair">
+    <div>
+        <p class="label">Original</p>
+        <video controls src="{{ scan.video_file.url }}"></video>
+    </div>
+    {% if scan.magnified_video %}
+    <div>
+        <p class="label">Motion-Magnified</p>
+        <video controls src="{{ scan.magnified_video.url }}"></video>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

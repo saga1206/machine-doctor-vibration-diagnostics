@@ -1,0 +1,30 @@
+# --- Core web framework ---
+Django==5.0.6
+
+# --- Video / vibration analysis (all CPU-only, no CUDA needed) ---
+opencv-python==4.10.0.84
+numpy==1.26.4
+scipy==1.13.1
+
+# --- Charts for the vibration graphs shown in the report ---
+matplotlib==3.9.0
+
+# --- Writing browser-playable (H.264) output video for motion magnification ---
+# (cv2.VideoWriter's default codec produces files that don't play in browsers)
+imageio==2.37.3
+imageio-ffmpeg==0.6.0
+
+# --- PDF report generation ---
+reportlab==4.2.0
+
+# --- Embedding similarity for the AI diagnosis module (Step 7) ---
+# This downloads a small (~90MB) pretrained model the FIRST time it runs,
+# then works fully offline afterwards. Runs fine on CPU, no GPU needed.
+sentence-transformers==3.0.1
+
+# --- Real LLM generation for the final diagnosis paragraph (Step 7b) ---
+# Free tier available -- get a key at https://aistudio.google.com/app/apikey
+# and set it as the GEMINI_API_KEY environment variable. If no key is set,
+# the app automatically falls back to simpler template-based text instead
+# of crashing.
+google-genai==2.20.0
