@@ -11,5 +11,9 @@ media/
 # Environment / secrets
 .env
 
+# Trained model weights (regenerate via deep_learning/ notebooks, or
+# share separately -- keeps the repo lightweight)
+scanner/analysis/models/*.pt
+
 # OS
 .DS_Store
