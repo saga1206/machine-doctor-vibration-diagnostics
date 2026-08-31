@@ -11,7 +11,7 @@ vibration imaging / predictive maintenance internship application.
 
 ## Demo
 
-[![Watch the Demo](https://img.shields.io/badge/📺_Watch_the_Demo-YouTube-blue?style=for-the-badge)](https://www.youtube.com/watch?v=XyHd_Qf5A2Q)
+[![Watch the Demo](https://img.shields.io/badge/📺_Watch_the_Demo-YouTube-blue?style=for-the-badge)](https://youtu.be/2lG9CsbmGTM)
 
 
 
